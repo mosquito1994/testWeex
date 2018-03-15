@@ -2,15 +2,15 @@
 const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 
-const root = (args) => {
-  return path.join(ROOT, 'src', args);
+const root = (pre, args) => {
+  return path.join(ROOT, 'src', pre, args || "");
 }
-const rootNode = (args) => {
-  return path.join(ROOT, args);
+const rootNode = (pre, args) => {
+  return path.join(ROOT, pre, args || "");
 }
 
-const resolve = (dir) => {
-  return path.join(__dirname, '..', dir)
+const resolve = (pre, dir) => {
+  return path.join(__dirname, '..', pre, dir || "")
 }
 
 module.exports = {

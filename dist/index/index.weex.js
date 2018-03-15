@@ -20365,10 +20365,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\test\\weex\\testWeex\\src\\components\\list.vue"
+__vue_options__.__file = "D:\\test\\weex\\testWeex\\src\\index\\components\\list.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-45db42bc"
+__vue_options__._scopeId = "data-v-2b910e9c"
 __vue_options__.style = __vue_options__.style || {}
 __vue_styles__.forEach(function (module) {
   for (var name in module) {
@@ -20413,7 +20413,6 @@ module.exports = {
     "height": "104",
     "width": "750",
     "background": "#f4f4f4",
-    "marginBottom": "36",
     "display": "flex",
     "alignItems": "center",
     "justifyContent": "center"
@@ -20425,7 +20424,8 @@ module.exports = {
     "flexDirection": "row"
   },
   "m-list": {
-    "backgroundColor": "#ffffff"
+    "backgroundColor": "#ffffff",
+    "paddingTop": "36"
   },
   "m-focusItem": {
     "width": "750",
@@ -20467,7 +20467,6 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
 //
 //
 //
@@ -20982,7 +20981,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\test\\weex\\testWeex\\src\\components\\test.vue"
+__vue_options__.__file = "D:\\test\\weex\\testWeex\\src\\index\\components\\test.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__.style = __vue_options__.style || {}
@@ -21046,7 +21045,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "D:\\test\\weex\\testWeex\\src\\index.vue"
+__vue_options__.__file = "D:\\test\\weex\\testWeex\\src\\index\\index.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__.style = __vue_options__.style || {}

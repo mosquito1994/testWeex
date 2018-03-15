@@ -56,7 +56,6 @@
     height: 104px;
     width: 750px;
     background: #f4f4f4;
-    margin-bottom: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,7 +67,6 @@
       background-size: 34px 34px;
       background-position: 27px 0;
       background-repeat: no-repeat;
-      width: 230px;
       height: 34px;
       line-height: 34px;
       font-size: 32px;
@@ -115,6 +113,7 @@
 
   .m-list {
     background-color: #fff;
+    padding-top: 36px;
   }
   .m-focusItem {
     width: 750px;
