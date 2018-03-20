@@ -2,12 +2,13 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const rimraf = require('rimraf');
-const childProcess = require('child_process');
 const dirs = getDirs(path.join(__dirname, '../src'));
 const argv = require('yargs').argv;
 
-const envArr = ['common', 'dev', 'prod', 'release'];
+const envArr = ['common', 'prod', 'release'];
 const env = argv.env;
+
+process.env.NODE_ENV = "production";
 
 rimraf(path.join(__dirname, '../dist'), function () {
     let _env = env;

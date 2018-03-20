@@ -13,7 +13,8 @@ module.exports = (options) => {
       // useVue: use vue-style-loader or not
       useVue: options && options.useVue,
       // usePostCSS: use postcss to compile styles.
-      usePostCSS: options && options.usePostCSS
+      usePostCSS: options && options.usePostCSS,
+      extract: process.env.NODE_ENV == 'production',
     }),
     cssSourceMap: sourceMapEnabled,
     cacheBusting: config.dev.cacheBusting

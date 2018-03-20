@@ -1,8 +1,9 @@
 import Router from 'vue-router'
-import list from '@/index/components/list'
-import test from '@/index/components/test'
+import list from '@/components/list'
+import test from '@/components/test'
 
-Vue.use(Router)
+  Vue.use(Router);
+
 
 module.exports = new Router({
   routes: [

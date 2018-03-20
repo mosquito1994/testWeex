@@ -12,10 +12,12 @@ const config = require('./config');
 /**
  * Webpack Plugins
  */
+
 const UglifyJsparallelPlugin = require('webpack-uglify-parallel');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 /**
  * Webpack configuration for web.
  */
@@ -48,19 +50,14 @@ module.exports = function (dir) {
        */
       filename: '[name].[chunkhash].bundle.js',
       /**
-       * The filename of the SourceMaps for the JavaScript files.
-       * They are inside the output.path directory.
-       *
-       * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
-       */
-      sourceMapFilename: '[name].[chunkhash].bundle.map',
-      /**
        * The filename of non-entry chunks as relative path
        * inside the output.path directory.
        *
        * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
        */
-      chunkFilename: '[id].[chunkhash].chunk.js'
+      chunkFilename: '[id].[chunkhash].chunk.js',
+
+      publicPath: ''
     },
     /*
     * Add additional plugins to the compiler.
@@ -79,6 +76,9 @@ module.exports = function (dir) {
           'NODE_ENV': config.prod.env
         }
       }),
+      new webpack.DllReferencePlugin({
+        manifest: require('../dll/vendor-manifest.json'),
+      }),
       /*
       * Plugin: UglifyJsPlugin
       * Description: Minimize all JavaScript output of chunks.
@@ -86,16 +86,26 @@ module.exports = function (dir) {
       *
       * See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
       */
+
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: helper.rootNode(`web/${dir}/index.html`),
         isDevServer: true,
         chunksSortMode: 'dependency',
         inject: true,
-        chunks: [dir],
         // production
         minimize: true
       }),
+      new HtmlWebpackIncludeAssetsPlugin({
+        assets: ['vendor.dll.js'],
+        publicPath: '',
+        append: false
+      }),
+      new CopyWebpackPlugin([{ 
+        context: __dirname,
+        from: '../dll/vendor.dll.js', 
+        to: '' 
+      }]),
       /*
       * Plugin: HtmlWebpackPlugin
       * Description: Simplifies creation of HTML files to serve your webpack bundles.
@@ -104,11 +114,11 @@ module.exports = function (dir) {
       *
       * See: https://github.com/ampedandwired/html-webpack-plugin
       */
-      new HtmlWebpackPlugin({
-        template: 'web/' + dir + '/index.html',
-        chunksSortMode: 'dependency',
-        inject: 'head'
-      }),
+      // new HtmlWebpackPlugin({
+      //   template: 'web/' + dir + '/index.html',
+      //   chunksSortMode: 'dependency',
+      //   inject: 'head'
+      // }),
       /*
       * Plugin: ScriptExtHtmlWebpackPlugin
       * Description: Enhances html-webpack-plugin functionality
@@ -137,7 +147,6 @@ module.exports = function (dir) {
       })
     ]
   });
-
   /**
    * Webpack configuration for weex.
    */
@@ -187,5 +196,5 @@ module.exports = function (dir) {
     ]
   })
 
-  return productionConfig;
+  return [productionConfig, weexConfig];
 }
