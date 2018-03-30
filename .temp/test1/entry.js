@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import weex from 'assets/weex-render-vue'
-
 /*global Vue*/
-weex.init(Vue);
 
+import Vue from 'vue'
+import weex from 'weex-vue-render'
+weex.init(Vue);
+/* weex initialized here, please do not move this line */
 const router = require('./router');
 const App = require('@/index.vue');
 

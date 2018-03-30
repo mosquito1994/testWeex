@@ -8,9 +8,11 @@ const portfinder = require('portfinder');
 const opn = require('opn');
 const dirs = getDirs(path.join(__dirname, '../src'));
 const app = express();
+const ip = require('ip')
 
 const webpackConfig = require(`../configs/webpack.dev.conf.js`);
 process.env.NODE_ENV = 'development';
+
 
 dirs.forEach(function(dir, index) {
     let _config = new webpackConfig(dir)[0];
@@ -23,9 +25,10 @@ dirs.forEach(function(dir, index) {
     }));
 });
 
-portfinder.getPort(function (err, port) {
+portfinder.basePort = 8080;
+portfinder.getPortPromise().then(function (port) {
     app.listen(port, function(){
-        opn('http://localhost:' + port);
+        opn(`http://${ip.address()}:${port}`);
     });
 });
 

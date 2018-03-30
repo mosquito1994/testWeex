@@ -21,7 +21,7 @@ module.exports = function (dir) {
     let entryContents = fs.readFileSync(source).toString();
     let contents = '';
 
-    // entryContents = entryContents.replace(/\/\* weex initialized/, match => `weex.init(Vue)\n${match}`);
+    entryContents = entryContents.replace(/\/\* weex initialized/, match => `import Vue from 'vue'\nimport weex from 'weex-vue-render'\nweex.init(Vue);\n${match}`);
     if (isWin) {
       relativePluginPath = relativePluginPath.replace(/\\/g, '\\\\');
     }
@@ -83,6 +83,11 @@ module.exports = function (dir) {
       chunksSortMode: 'dependency',
       inject: true,
       minimize: false
+    }),
+    new webpack.BannerPlugin({
+      banner: '// { "framework": "Vue"} \n',
+      raw: true,
+      exclude: 'Vue'
     })
   ];
 
@@ -192,7 +197,8 @@ module.exports = function (dir) {
     resolve: {
       extensions: ['.js', '.vue', '.json'],
       alias: {
-        '@': helper.resolve('src')
+        '@': helper.resolve('src', dir),
+        'assets': helper.resolve('web/assets')
       }
     },
     /*
@@ -207,6 +213,14 @@ module.exports = function (dir) {
           use: [{
             loader: 'babel-loader'
           }]
+        },
+        {
+          test: /\.json$/,
+          loader: 'json-loader'
+        },
+        {
+          test: /\.css|\.less/,
+          use: cssLoader
         },
         {
           test: /\.vue(\?[^?]+)?$/,

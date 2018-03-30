@@ -199,6 +199,7 @@ module.exports = function (dir) {
   const _webConfig = new commonConfig(dir)[0];
   const plugins = [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development')
