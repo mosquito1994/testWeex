@@ -16,7 +16,7 @@
           <image class="m-goodsImage" resize="cover" :src="item.picUrl" ></image>
           <div class="m-goodsInfo">
             <text class="u-title">{{item.name}}</text>
-            <p class="u-price">&yen;<span class="larger">{{item.minPrice}}</span>起</p>
+            <p class="m-price"><span class="u-price">&yen;</span><span class="larger">{{item.minPrice}}</span><span class="u-price">起</span></p>
             <div class="m-listProgressBar">
               <div class="bar">
                 <div class="inner" :style="{width: item.actualAmountPercent * 3.3 + 'px'}"></div>
@@ -50,25 +50,26 @@
   bottom: 40px;
   height: 10px;
   width: 750px;
-  display: flex;
+  flex-direction: row;
   align-items: center;
+}
+.m-price {
+  margin-top: 11px;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 .m-title {
   position: relative;
   height: 104px;
   width: 750px;
   background-color: #f4f4f4;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
 .name {
   position: relative;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAAn1BMVEUAAAA0NDQ0NDRLS0szMzM4ODgzMzMzMzMzMzMzMzMzMzMzMzM0NDQzMzMzMzM0NDQ1NTU0NDQzMzMzMzM0NDQ0NDQ0NDQ0NDQ8PDwzMzMzMzMzMzM0NDQ5OTkzMzMzMzM0NDQ0NDQ0NDQ0NDQ2NjY4ODg6Ojo/Pz9ra2szMzM0NDQzMzMzMzMzMzM1NTU0NDQ1NTU3Nzc0NDQ1NTUzMzO7t/s4AAAANHRSTlMAeoUF+hbwu8iflvXBsItNK+mokGplVkYM49d+PBPd0nZzUjYkGhAJAs3MtZqCYUExHGAdMysXaAAAAc5JREFUOMu1k9d6qzAQhHEQoveODbjhnricef9nO8FCIGNyl8wNWr4fpNkdSX8o+WpoOfGPurv/GTo8cnDRlfwD9e8EFJ+Lu9xslhpQ3SapjY886au0hulOUFsKdSceUwdZvFFZDXt0mhB+M8Y+UWTfj5mmtN/YeutIRTCiFBMbqcVQl9Legt4WjQnvFZvDZosLjo2KM9vfYfigE9KudzpMTklb+IeXPWHKzEnqFsjdtGTvC7yYXcDiezKdWanjS8QS7unmODZUx+l+8oGZiEUw+vUaUb9ewRGxFEu2cFW1RqGqD+Fv4tj7zjMF/GzxwHhG+JC5ZyXGUlG6qsIQk5sJoNpMnM2DL/VSYcc1SMKxYaOL4EwmKCU5BFmzemfco5xqcSZ5BFtxAiwihMcwRit/dcJF6rUnZM/mTLqWW4jlRANAt9IgDdcuJZgfGLZ+thAgxl1IZMBnAct79j5XnkYDgISKGEk2DB/QlgvFYuljIL33may6y1KGFAAI0PDWVUh5S1RoGTeUGEcKYvXXx0Z/D8sCR9GUeMUCJEPvTqC8EjVOZmYDRjmFGYjE8ouCznfvmIPVa+TOAA0/xtIwH314tTAhHmwRnL0r2km/rf+EnzpIsX5FKgAAAABJRU5ErkJggg==);
-  background-color: #f4f4f4;
+  background: #f4f4f4 27px 0 no-repeat url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAAn1BMVEUAAAA0NDQ0NDRLS0szMzM4ODgzMzMzMzMzMzMzMzMzMzMzMzM0NDQzMzMzMzM0NDQ1NTU0NDQzMzMzMzM0NDQ0NDQ0NDQ0NDQ8PDwzMzMzMzMzMzM0NDQ5OTkzMzMzMzM0NDQ0NDQ0NDQ0NDQ2NjY4ODg6Ojo/Pz9ra2szMzM0NDQzMzMzMzMzMzM1NTU0NDQ1NTU3Nzc0NDQ1NTUzMzO7t/s4AAAANHRSTlMAeoUF+hbwu8iflvXBsItNK+mokGplVkYM49d+PBPd0nZzUjYkGhAJAs3MtZqCYUExHGAdMysXaAAAAc5JREFUOMu1k9d6qzAQhHEQoveODbjhnricef9nO8FCIGNyl8wNWr4fpNkdSX8o+WpoOfGPurv/GTo8cnDRlfwD9e8EFJ+Lu9xslhpQ3SapjY886au0hulOUFsKdSceUwdZvFFZDXt0mhB+M8Y+UWTfj5mmtN/YeutIRTCiFBMbqcVQl9Legt4WjQnvFZvDZosLjo2KM9vfYfigE9KudzpMTklb+IeXPWHKzEnqFsjdtGTvC7yYXcDiezKdWanjS8QS7unmODZUx+l+8oGZiEUw+vUaUb9ewRGxFEu2cFW1RqGqD+Fv4tj7zjMF/GzxwHhG+JC5ZyXGUlG6qsIQk5sJoNpMnM2DL/VSYcc1SMKxYaOL4EwmKCU5BFmzemfco5xqcSZ5BFtxAiwihMcwRit/dcJF6rUnZM/mTLqWW4jlRANAt9IgDdcuJZgfGLZ+thAgxl1IZMBnAct79j5XnkYDgISKGEk2DB/QlgvFYuljIL33may6y1KGFAAI0PDWVUh5S1RoGTeUGEcKYvXXx0Z/D8sCR9GUeMUCJEPvTqC8EjVOZmYDRjmFGYjE8ouCznfvmIPVa+TOAA0/xtIwH314tTAhHmwRnL0r2km/rf+EnzpIsX5FKgAAAABJRU5ErkJggg==);
   background-size: 34px 34px;
-  background-position: 27px 0;
-  background-repeat: no-repeat;
   height: 34px;
   line-height: 34px;
   font-size: 32px;
@@ -85,7 +86,6 @@
 .m-listProgressBar {
   height: 20px;
   margin-top: 26px;
-  display: flex;
   flex-direction: row;
 }
 .bar {
@@ -112,6 +112,8 @@
   margin-left: 20px;
 }
 .m-list {
+  width: 750px;
+  height: 1334px;
   background-color: #fff;
   padding-top: 36px;
 }
@@ -120,7 +122,6 @@
   height: 210px;
   margin-bottom: 50px;
   padding: 0 30px;
-  display: flex;
   flex-direction: row;
 }
 .m-goodsImage {
@@ -165,17 +166,16 @@
   height: 48px;
   line-height: 46px;
   font-size: 24px;
-  border: 1px solid #7f7f7f;
+  border-width: 1px;
+  border-style: solid;
+  border-color:#7f7f7f;
   text-align: center;
   color: #666;
   border-radius: 4px;
 }
 .u-price {
-  height: 32px;
-  line-height: 32px;
   font-size: 24px;
   color: #F48F17;
-  margin-top: 11px;
   font-weight: 700;
 }
 .larger {
