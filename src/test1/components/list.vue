@@ -16,17 +16,17 @@
           <image class="m-goodsImage" resize="cover" :src="item.picUrl" ></image>
           <div class="m-goodsInfo">
             <text class="u-title">{{item.name}}</text>
-            <p class="m-price"><span class="u-price">&yen;</span><span class="larger">{{item.minPrice}}</span><span class="u-price">起</span></p>
+            <div class="m-price"><text class="u-price">&yen;</text><text class="larger">{{item.minPrice}}</text><text class="u-price">起</text></div>
             <div class="m-listProgressBar">
               <div class="bar">
                 <div class="inner" :style="{width: item.actualAmountPercent * 3.3 + 'px'}"></div>
               </div>
-              <div class="u-tag">{{getPercent(item.actualAmountPercent)}}%</div>
+              <text class="u-tag">{{getPercent(item.actualAmountPercent)}}%</text>
             </div>
             <div class="u-support" v-if="item.status==4">
               <text class="u-text-success">众筹成功</text>
               <div class="btn-grey">
-                <div class="btn">了解项目</div>
+                <text class="btn">了解项目</text>
               </div>
             </div>
           </div>
@@ -36,9 +36,10 @@
   </div>
 </template>
 <style scoped>
-  .slider {
+.slider {
   position: relative;
 }
+
 .image,
 .frame,
 .slider {
@@ -53,11 +54,7 @@
   flex-direction: row;
   align-items: center;
 }
-.m-price {
-  margin-top: 11px;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
+
 .m-title {
   position: relative;
   height: 104px;
@@ -172,6 +169,12 @@
   text-align: center;
   color: #666;
   border-radius: 4px;
+}
+.m-price {
+  margin-top: 11px;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-direction: row;
 }
 .u-price {
   font-size: 24px;
@@ -411,10 +414,11 @@
       },
       methods: {
         jump () {
-          this.$router.push("/test");
+          //this.$router.push("/test");
+          alert(123)
         },
         getPercent (percent) {
-          return percent >= 999 ? "999+" : percent;
+          return percent >= 999 ? ">=999" : percent;
         }
       }
     }

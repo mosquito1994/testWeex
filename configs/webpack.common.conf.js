@@ -220,7 +220,7 @@ module.exports = function (dir) {
         },
         {
           test: /\.css|\.less/,
-          use: cssLoader
+          use: ["postcss-loader", "css-loader", "less-loader"]
         },
         {
           test: /\.vue(\?[^?]+)?$/,
@@ -236,7 +236,13 @@ module.exports = function (dir) {
     *
     * See: http://webpack.github.io/docs/configuration.html#plugins
     */
-    plugins: plugins,
+    plugins: [
+      new webpack.BannerPlugin({
+        banner: '// { "framework": "Vue"} \n',
+        raw: true,
+        exclude: 'Vue'
+      })
+    ],
     /*
     * Include polyfills or mocks for various node stuff
     * Description: Node configuration

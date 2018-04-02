@@ -11,6 +11,7 @@
     "clean:ios": "rimraf ./release/ios",
     "clean:android": "rimraf ./release/android",
     "dev": "node scripts/dev.js",
+    "weex": "node scripts/dev-weex.js",
     "preview": "webpack-dev-server --env.NODE_ENV=development --progress --open-page=index.html",
     "ios": "weex run ios",
     "web": "npm run dev",
